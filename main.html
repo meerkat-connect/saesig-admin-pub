@@ -1,0 +1,1607 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>새식일기 관리자 페이지</title>
+        <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 10]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="description" content="#">
+        <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+        <meta name="author" content="#">
+        <!-- Favicon icon -->
+        <link rel="icon" href="./files/assets/images/fafvicon1.png" type="image/x-icon">
+        <!-- Google font-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+        <!-- Required Fremwork -->
+        <link rel="stylesheet" type="text/css" href="./files/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!-- themify-icons line icon -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/icon/themify-icons/themify-icons.css">
+        <!-- ion icon css -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/icon/ion-icon/css/ionicons.min.css">
+        <!-- ico font -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/icon/icofont/css/icofont.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/icon/font-awesome/css/font-awesome.min.css">
+        <!-- feather Awesome -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/icon/feather/css/feather.css">
+
+        <!-- Select 2 css -->
+        <link rel="stylesheet" href="./files/bower_components/select2/dist/css/select2.min.css"/>
+        <!-- Multi Select css -->
+        <link rel="stylesheet" type="text/css" href="./files/bower_components/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" />
+        <link rel="stylesheet" type="text/css" href="./files/bower_components/multiselect/css/multi-select.css" />
+        <!-- Switch component css -->
+        <link rel="stylesheet" type="text/css" href="./files/bower_components/switchery/dist/switchery.min.css">
+        <link rel="stylesheet" type="text/css" href="./files/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+        <!-- Style.css -->
+        <link rel="stylesheet" type="text/css" href="./files/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./files/assets/css/jquery.mCustomScrollbar.css">
+        <!-- Data tables-->
+        <link rel="stylesheet" type="text/css" href="./css/datatables.css">
+        <link rel="stylesheet" type="text/css" href="./css/datatables-select.css">
+        <link rel="stylesheet" type="text/css" href="./js/nice-select/css/nice-select.css">
+        <!-- 관리자 임의 추가 css -->
+        <link rel="stylesheet" type="text/css" href="./css/admin.common.css">
+
+        <script type="text/javascript" src="./files/bower_components/jquery/dist/jquery.min.js"></script>
+    </head>
+
+
+<body>
+
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+
+    <div class="pcoded-container navbar-wrapper">
+        
+    <nav class="navbar header-navbar pcoded-header">
+        <div class="navbar-wrapper">
+            <div class="navbar-logo">
+                <a class="mobile-menu" id="mobile-collapse" href="#!">
+                    <img class="img-fluid" src="./files/assets/images/menu_open.png" alt="Theme-Logo"/>
+                </a>
+                <a href="index.html">
+                    <img class="img-fluid" src="./files/assets/images/logo.png" alt="Theme-Logo"/>
+                </a>
+                <a class="mobile-options">
+                    <i class="feather icon-more-horizontal"></i>
+                </a>
+            </div>
+
+            <div class="navbar-container">
+                <ul class="nav-left">
+                    <li>
+                        <a href="#!" onclick="javascript:fullScreen()" class="waves-effect waves-light">
+                            <i class="full-screen feather icon-maximize"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" onclick="javascript:fullScreen()" class="waves-effect waves-light"
+                           style="font-size:14px; line-height:20px; color:#000">
+                            전체화면 보기
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav-right">
+                    <li class="user-profile header-notification">
+                        <div class="dropdown-primary dropdown">
+                            <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                                
+                                <i class="feather icon-chevron-down"></i>
+                            </div>
+                            <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                
+                                
+                                <li>
+                                    <form action="/logout" method="post">
+
+                                        <button>
+                                            <i class="feather icon-log-out"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+        function fullScreen() {
+            var a = $(window).height() - 10;
+            if (!document.fullscreenElement && // alternative standard method
+                !document.mozFullScreenElement && !document.webkitFullscreenElement) { // current working methods
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
+
+            document.addEventListener('fullscreenchange', exitHandler);
+            document.addEventListener('webkitfullscreenchange', exitHandler);
+            document.addEventListener('mozfullscreenchange', exitHandler);
+            document.addEventListener('MSFullscreenChange', exitHandler);
+        }
+
+        function exitHandler() {
+            $('.full-screen').toggleClass('icon-maximize');
+            $('.full-screen').toggleClass('icon-minimize');
+        }
+
+    </script>
+
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+                
+    <nav class="pcoded-navbar">
+        <div class="pcoded-inner-navbar main-menu">
+            <div class="pcoded-navigatio-lavel">회원관리</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li>
+                    <a href="/admin/members/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">회원관리</span>
+                    </a>
+                </li>
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Page layouts</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class=" pcoded-hasmenu">
+                            <a href="javascript:void(0)">
+                                <span class="pcoded-mtext">Vertical</span>
+                            </a>
+                            <ul class="pcoded-submenu">
+                                <li class=" ">
+                                    <a href="menu-static.html">
+                                        <span class="pcoded-mtext">Static Layout</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-header-fixed.html">
+                                        <span class="pcoded-mtext">Header Fixed</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-compact.html">
+                                        <span class="pcoded-mtext">Compact</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-sidebar.html">
+                                        <span class="pcoded-mtext">Sidebar Fixed</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class=" pcoded-hasmenu">
+                            <a href="javascript:void(0)">
+                                <span class="pcoded-mtext">Horizontal</span>
+                            </a>
+                            <ul class="pcoded-submenu">
+                                <li class=" ">
+                                    <a href="menu-horizontal-static.html" target="_blank">
+                                        <span class="pcoded-mtext">Static Layout</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-horizontal-fixed.html" target="_blank">
+                                        <span class="pcoded-mtext">Fixed layout</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-horizontal-icon.html" target="_blank">
+                                        <span class="pcoded-mtext">Static With Icon</span>
+                                    </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="menu-horizontal-icon-fixed.html" target="_blank">
+                                        <span class="pcoded-mtext">Fixed With Icon</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class=" ">
+                            <a href="menu-bottom.html">
+                                <span class="pcoded-mtext">Bottom Menu</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="box-layout.html" target="_blank">
+                                <span class="pcoded-mtext">Box Layout</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="menu-rtl.html" target="_blank">
+                                <span class="pcoded-mtext">RTL</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="/admin/dormant-members/view">
+                        <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                        <span class="pcoded-mtext">휴면회원관리</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="pcoded-navigatio-lavel">새식일기</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="">
+                    <a href="/admin/saesigManage/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">새식관리</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/diaryManage/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">일기관리</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="pcoded-navigatio-lavel">서비스관리</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="">
+                    <a href="/admin/inquiry/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">문의관리</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/faqs/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">FAQ관리</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/news/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">새식소식</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/policy/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">약관 및 정책관리</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="pcoded-navigatio-lavel">통합관리</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="">
+                    <a href="/admin/banner/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">배너관리</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/popup/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">팝업관리</span>
+                    </a>
+                </li>
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">메시지관리</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="/admin/sendHistory/view">
+                                <span class="pcoded-mtext">발송이력</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/admin/templateManage/view">
+                                <span class="pcoded-mtext">템플릿관리</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="/admin/managerBoard/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">관리자 게시판</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="pcoded-navigatio-lavel">시스템관리</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="">
+                    <a href="/admin/resources/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">자원관리</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/roles/view">
+                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                        <span class="pcoded-mtext">권한관리</span>
+                    </a>
+                </li>
+                <!--        <li class="pcoded-hasmenu">
+                          <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                            <span class="pcoded-mtext">코드관리</span>
+                          </a>
+                        </li>-->
+                <!--<li class="pcoded-hasmenu">
+                  <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">로그관리</span>
+                  </a>
+                </li>-->
+                <!--<li class="pcoded-hasmenu">
+                  <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">설정</span>
+                  </a>
+                </li>-->
+            </ul>
+
+            <div class="pcoded-navigatio-lavel">시스템관리</div><ul class="pcoded-item pcoded-left-item"><li><a href="javascript:goMenu('/admin/resources/view','1')">
+<span class="pcoded-micon"><i class="feather icon-hash"></i></span><span class="pcoded-mtext">자원관리</span></a>
+</li><li class="pcoded-hasmenu ">
+<a href="javascript:void(0)"><span class="pcoded-micon"><i class="feather icon-hash"></i></span><span class="pcoded-mtext">권한관리</span></a>
+<ul class="first-depth-submenu pcoded-submenu">
+<li class="">
+<a href="javascript:goMenu('/admin/roles/view','1')">
+<span class="pcoded-mtext">권한관리 진입점</span></a>
+</li></ul></li><li><a href="javascript:goMenu('/admin/access-log/view','1')">
+<span class="pcoded-micon"><i class="feather icon-hash"></i></span><span class="pcoded-mtext">로그이력</span></a>
+</li></ul>
+        </div>
+    </nav>
+
+    <form name="form_menu" id="form_menu" action="/" method="get" onsubmit="return false;">
+        <input type="hidden" name="cmkey" id="cmkey" value="" />
+        <input type="hidden" name="preUrl" id="preUrl" value="" />
+    </form>
+
+    <script>
+        jQuery("form").each(function(){
+            if(!jQuery(this).children("*").is("#mkey")){
+                jQuery("<input>",{type:'hidden',name:'mkey',id:'mkey',value:'null'}).appendTo(this);
+            }
+        });
+
+        $(document).ready(function(){
+/*            setTimeout(() => {
+                var clickedMunu = $("#mCSB_1_container").children("ul").children(".active");
+                var offsetTop = (-Number($(clickedMunu).offset().top -250))
+                var menuzoneHeight = $("#mCSB_1_container").height();
+                $("#mCSB_1_container").css({"top":(offsetTop<-250)?offsetTop: 0});
+            }, 100);*/
+        })
+
+        function goMenu(url, cmkey){
+            jQuery("#form_menu").attr("action",url);
+            jQuery("#form_menu input[id=cmkey]").val(cmkey);
+            jQuery("#form_menu")[0].submit();
+        }
+    </script>
+
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <!-- Page-header start -->
+                                <div class="page-header">
+                                    <div class="row align-items-end justify-content-between">
+                                        <div class="col-lg-auto">
+                                            <div class="page-header-title">
+                                                <div class="d-inline">
+                                                    <h4>대시보드</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-auto">
+                                            <div class="page-header-breadcrumb">
+                                                <ul class="breadcrumb-title">
+                                                    <li class="breadcrumb-item" style="float: left;">
+                                                        <i class="feather icon-home"></i> 관리자 > 대시보드
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Page-header end -->
+
+                                <!-- Page body start -->
+                                <div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-yellow f-w-600">$30200</h4>
+                            <h6 class="text-muted m-b-0">All Earnings</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="feather icon-bar-chart f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-yellow">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <p class="text-white m-b-0">% change</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <i class="feather icon-trending-up text-white f-16"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-green f-w-600">290+</h4>
+                            <h6 class="text-muted m-b-0">Page Views</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="feather icon-file-text f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-green">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <p class="text-white m-b-0">% change</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <i class="feather icon-trending-up text-white f-16"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-pink f-w-600">145</h4>
+                            <h6 class="text-muted m-b-0">Task Completed</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="feather icon-calendar f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-pink">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <p class="text-white m-b-0">% change</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <i class="feather icon-trending-up text-white f-16"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-blue f-w-600">500</h4>
+                            <h6 class="text-muted m-b-0">Downloads</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="feather icon-download f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-blue">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <p class="text-white m-b-0">% change</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <i class="feather icon-trending-up text-white f-16"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-8 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Visitors</h5>
+                    <span class="text-muted">For more details about usage, please
+refer <a href="https://www.amcharts.com/online-store/" target="_blank">amCharts</a> licences.</span>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="feather icon-maximize full-card"></i></li>
+                            <li><i class="feather icon-minus minimize-card"></i>
+                            </li>
+                            <li><i class="feather icon-trash-2 close-card"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div id="visitor" style="height: 300px; overflow: hidden; text-align: left;">
+                        <div class="amcharts-main-div" style="position: relative; width: 100%; height: 100%;">
+                            <div class="amChartsLegend amcharts-legend-div" style="overflow: hidden; position: relative; text-align: left; width: 1007px; height: 48px; cursor: default;">
+                                <svg version="1.1" style="position: absolute; width: 1007px; height: 48px;">
+                                    <desc>JavaScript chart by amCharts 3.21.5</desc>
+                                    <g transform="translate(81,10)">
+                                        <path cs="100,100" d="M0.5,0.5 L857.5,0.5 L857.5,37.5 L0.5,37.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0"></path>
+                                        <g transform="translate(0,11)">
+                                            <g cursor="pointer" aria-label="old Visitor" transform="translate(0,0)">
+                                                <path cs="100,100" d="M-15.5,8.5 L16.5,8.5 L16.5,-7.5 L-15.5,-7.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9" transform="translate(16,8)"></path>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                    <tspan y="6" x="0">old Visitor</tspan>
+                                                </text>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(193,7)"></text>
+                                                <rect x="32" y="0" width="161.03076171875" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect>
+                                            </g>
+                                            <g cursor="pointer" aria-label="New visitor" transform="translate(208,0)">
+                                                <path cs="100,100" d="M-15.5,8.5 L16.5,8.5 L16.5,-7.5 L-15.5,-7.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9" transform="translate(16,8)"></path>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                    <tspan y="6" x="0">New visitor</tspan>
+                                                </text>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(193,7)"></text>
+                                                <rect x="32" y="0" width="161.03076171875" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect>
+                                            </g>
+                                            <g cursor="pointer" aria-label="Last Month Visitor" transform="translate(415,0)">
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,8.5 L32.5,8.5" fill="none" stroke-width="2" stroke-opacity="0.9" stroke="#0df3a3"></path>
+                                                    <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(17,8)"></circle>
+                                                </g>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                    <tspan y="6" x="0">Last Month Visitor</tspan>
+                                                </text>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(193,7)"></text>
+                                                <rect x="32" y="0" width="161.03076171875" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect>
+                                            </g>
+                                            <g cursor="pointer" aria-label="Average Visitor" transform="translate(623,0)">
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,8.5 L32.5,8.5" fill="none" stroke-width="2" stroke-dasharray="5" stroke-opacity="0.9" stroke="#fe5d70"></path>
+                                                    <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(17,8)"></circle>
+                                                </g>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                    <tspan y="6" x="0">Average Visitor</tspan>
+                                                </text>
+                                                <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(193,7)"></text>
+                                                <rect x="32" y="0" width="161.03076171875" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="amcharts-chart-div" style="overflow: hidden; position: relative; text-align: left; width: 1007px; height: 252px; padding: 0px; cursor: default;">
+                                <svg version="1.1" style="position: absolute; width: 1007px; height: 252px; top: -0.109375px; left: -0.203125px;">
+                                    <desc>JavaScript chart by amCharts 3.21.5</desc>
+                                    <g>
+                                        <path cs="100,100" d="M0.5,0.5 L1006.5,0.5 L1006.5,251.5 L0.5,251.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0"></path>
+                                        <path cs="100,100" d="M0.5,0.5 L857.5,0.5 L857.5,201.5 L0.5,201.5 L0.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0" transform="translate(81,20)"></path>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(81,20)">
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M0.5,201.5 L0.5,201.5 L0.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M57.5,201.5 L57.5,201.5 L57.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M114.5,0.5 L114.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M114.5,201.5 L114.5,201.5 L114.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M171.5,201.5 L171.5,201.5 L171.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M229.5,0.5 L229.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M229.5,201.5 L229.5,201.5 L229.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M286.5,201.5 L286.5,201.5 L286.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M343.5,0.5 L343.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M343.5,201.5 L343.5,201.5 L343.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M400.5,201.5 L400.5,201.5 L400.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M457.5,0.5 L457.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M457.5,201.5 L457.5,201.5 L457.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M514.5,201.5 L514.5,201.5 L514.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M571.5,0.5 L571.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M571.5,201.5 L571.5,201.5 L571.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M628.5,201.5 L628.5,201.5 L628.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M686.5,0.5 L686.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M686.5,201.5 L686.5,201.5 L686.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M743.5,201.5 L743.5,201.5 L743.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M800.5,0.5 L800.5,5.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,201)"></path>
+                                                <path cs="100,100" d="M800.5,201.5 L800.5,201.5 L800.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M857.5,201.5 L857.5,201.5 L857.5,0.5" fill="none" stroke-width="1" stroke-dasharray="1" stroke-opacity="0.07" stroke="#000000"></path>
+                                            </g>
+                                        </g>
+                                        <g transform="translate(81,20)" visibility="visible">
+                                            <g>
+                                                <path cs="100,100" d="M0.5,201.5 L6.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,201.5 L0.5,201.5 L857.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,161.5 L6.5,161.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,161.5 L0.5,161.5 L857.5,161.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,121.5 L6.5,121.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,121.5 L0.5,121.5 L857.5,121.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,80.5 L6.5,80.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,80.5 L0.5,80.5 L857.5,80.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,40.5 L6.5,40.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,40.5 L0.5,40.5 L857.5,40.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L6.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,0.5 L857.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.1" stroke="#000000"></path>
+                                            </g>
+                                        </g>
+                                        <g transform="translate(81,20)" visibility="visible">
+                                            <g>
+                                                <path cs="100,100" d="M0.5,201.5 L6.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,161.5 L6.5,161.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,121.5 L6.5,121.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,80.5 L6.5,80.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,40.5 L6.5,40.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L6.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(857,0)"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g transform="translate(81,20)" clip-path="url(#AmChartsEl-3)">
+                                        <g visibility="hidden"></g>
+                                    </g>
+                                    <g></g>
+                                    <g></g>
+                                    <g></g>
+                                    <g>
+                                        <g transform="translate(81,20)">
+                                            <g>
+                                                <g transform="translate(15,201)" aria-label="old Visitor Jan 16, 2013 8.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-160.5 L29.5,-160.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(72,201)" aria-label="old Visitor Jan 17, 2013 6.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-120.5 L29.5,-120.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(129,201)" aria-label="old Visitor Jan 18, 2013 2.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-39.5 L29.5,-39.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(186,201)" aria-label="old Visitor Jan 19, 2013 9.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-180.5 L29.5,-180.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(243,201)" aria-label="old Visitor Jan 20, 2013 6.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-120.5 L29.5,-120.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(300,201)" aria-label="old Visitor Jan 21, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L29.5,-99.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(357,201)" aria-label="old Visitor Jan 22, 2013 7.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-140.5 L29.5,-140.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(415,201)" aria-label="old Visitor Jan 23, 2013 6.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-120.5 L29.5,-120.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(472,201)" aria-label="old Visitor Jan 24, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L29.5,-99.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(529,201)" aria-label="old Visitor Jan 25, 2013 8.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-160.5 L29.5,-160.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(586,201)" aria-label="old Visitor Jan 26, 2013 8.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-160.5 L29.5,-160.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(643,201)" aria-label="old Visitor Jan 27, 2013 4.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-79.5 L29.5,-79.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(700,201)" aria-label="old Visitor Jan 28, 2013 7.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-140.5 L29.5,-140.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(757,201)" aria-label="old Visitor Jan 29, 2013 8.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-160.5 L29.5,-160.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(814,201)" aria-label="old Visitor Jan 30, 2013 7.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-140.5 L29.5,-140.5 L29.5,0.5 L0.5,0.5 Z" fill="#feb798" stroke="#feb798" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g transform="translate(81,20)">
+                                            <g>
+                                                <g transform="translate(20,201)" aria-label="New visitor Jan 16, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(77,201)" aria-label="New visitor Jan 17, 2013 4.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-79.5 L17.5,-79.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(134,201)" aria-label="New visitor Jan 18, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(191,201)" aria-label="New visitor Jan 19, 2013 8.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-160.5 L17.5,-160.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(248,201)" aria-label="New visitor Jan 20, 2013 9.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-180.5 L17.5,-180.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(305,201)" aria-label="New visitor Jan 21, 2013 3.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-59.5 L17.5,-59.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(362,201)" aria-label="New visitor Jan 22, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(420,201)" aria-label="New visitor Jan 23, 2013 7.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-140.5 L17.5,-140.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(477,201)" aria-label="New visitor Jan 24, 2013 9.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-180.5 L17.5,-180.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(534,201)" aria-label="New visitor Jan 25, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(591,201)" aria-label="New visitor Jan 26, 2013 4.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-79.5 L17.5,-79.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(648,201)" aria-label="New visitor Jan 27, 2013 3.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-59.5 L17.5,-59.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(705,201)" aria-label="New visitor Jan 28, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(762,201)" aria-label="New visitor Jan 29, 2013 5.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-99.5 L17.5,-99.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                                <g transform="translate(819,201)" aria-label="New visitor Jan 30, 2013 4.00">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-79.5 L17.5,-79.5 L17.5,0.5 L0.5,0.5 Z" fill="#fe9365" stroke="#fe9365" fill-opacity="1" stroke-width="1" stroke-opacity="0.9"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g transform="translate(81,20)">
+                                            <g></g>
+                                            <g clip-path="url(#AmChartsEl-5)">
+                                                <path cs="100,100"
+                                                      d="M29,193 C43,192,58,172,86,169 C115,166,115,141,143,137 C172,132,172,82,200,80 C229,79,229,104,257,105 C286,105,286,99,314,96 C343,94,342,57,371,56 C400,55,400,79,429,80 C458,82,458,78,486,80 C515,82,515,121,543,121 C572,120,572,66,600,64 C629,63,629,87,657,88 C686,90,686,96,714,96 C743,96,743,88,771,88 C800,89,814,111,828,113 M0,0 L0,0"
+                                                      fill="none" fill-opacity="0" stroke-width="2" stroke-opacity="0.9" stroke="#0df3a3"></path>
+                                            </g>
+                                            <clipPath id="AmChartsEl-5">
+                                                <rect x="0" y="0" width="857" height="201" rx="0" ry="0" stroke-width="0"></rect>
+                                            </clipPath>
+                                            <g></g>
+                                        </g>
+                                        <g transform="translate(81,20)">
+                                            <g></g>
+                                            <g clip-path="url(#AmChartsEl-6)">
+                                                <path cs="100,100"
+                                                      d="M29.5,161.3 L86.5,137.18 L143.5,56.78 L200.5,48.74 L257.5,48.74 L314.5,80.9 L371.5,24.62 L429.5,40.7 L486.5,32.66 L543.5,88.94 L600.5,24.62 L657.5,64.82 L714.5,56.78 L771.5,64.82 L828.5,80.9 M0,0 L0,0"
+                                                      fill="none" stroke-width="2" stroke-dasharray="5" stroke-opacity="0.9" stroke="#fe5d70" stroke-linejoin="round"></path>
+                                            </g>
+                                            <clipPath id="AmChartsEl-6">
+                                                <rect x="0" y="0" width="857" height="201" rx="0" ry="0" stroke-width="0"></rect>
+                                            </clipPath>
+                                            <g></g>
+                                        </g>
+                                    </g>
+                                    <g></g>
+                                    <g>
+                                        <path cs="100,100" d="M0.5,201.5 L857.5,201.5 L857.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.2" stroke="#000000" transform="translate(81,20)"></path>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L857.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(81,221)"></path>
+                                        </g>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L0.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(81,20)" visibility="visible"></path>
+                                        </g>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L0.5,201.5 L0.5,201.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(938,20)" visibility="visible"></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(81,20)" clip-path="url(#AmChartsEl-4)" style="pointer-events: none;">
+                                            <path cs="100,100" d="M0.5,0.5 L0.5,0.5 L0.5,201.5" fill="none" stroke-width="1" stroke-opacity="0" stroke="#000000" visibility="hidden" transform="translate(200,0)"></path>
+                                            <path cs="100,100" d="M0.5,0.5 L857.5,0.5 L857.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.2" stroke="#000000" visibility="hidden" transform="translate(0,75)"></path>
+                                        </g>
+                                        <clipPath id="AmChartsEl-4">
+                                            <rect x="0" y="0" width="857" height="201" rx="0" ry="0" stroke-width="0"></rect>
+                                        </clipPath>
+                                    </g>
+                                    <g></g>
+                                    <g>
+                                        <g transform="translate(81,20)"></g>
+                                        <g transform="translate(81,20)"></g>
+                                        <g transform="translate(81,20)">
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(29,193)"
+                                                    aria-label="Last Month Visitor Jan 16, 2013 71.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(86,169)"
+                                                    aria-label="Last Month Visitor Jan 17, 2013 74.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(143,137)"
+                                                    aria-label="Last Month Visitor Jan 18, 2013 78.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(200,80) scale(1)"
+                                                    aria-label="Last Month Visitor Jan 19, 2013 85.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(257,105) scale(1)"
+                                                    aria-label="Last Month Visitor Jan 20, 2013 82.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(314,96) scale(1)"
+                                                    aria-label="Last Month Visitor Jan 21, 2013 83.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(371,56)"
+                                                    aria-label="Last Month Visitor Jan 22, 2013 88.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(429,80)"
+                                                    aria-label="Last Month Visitor Jan 23, 2013 85.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(486,80)"
+                                                    aria-label="Last Month Visitor Jan 24, 2013 85.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(543,121)"
+                                                    aria-label="Last Month Visitor Jan 25, 2013 80.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(600,64)"
+                                                    aria-label="Last Month Visitor Jan 26, 2013 87.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(657,88)"
+                                                    aria-label="Last Month Visitor Jan 27, 2013 84.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(714,96)"
+                                                    aria-label="Last Month Visitor Jan 28, 2013 83.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(771,88)"
+                                                    aria-label="Last Month Visitor Jan 29, 2013 84.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#0df3a3" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(828,113)"
+                                                    aria-label="Last Month Visitor Jan 30, 2013 81.00"></circle>
+                                        </g>
+                                        <g transform="translate(81,20)">
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(29,161)"
+                                                    aria-label="Average Visitor Jan 16, 2013 75.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(86,137)"
+                                                    aria-label="Average Visitor Jan 17, 2013 78.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(143,56)"
+                                                    aria-label="Average Visitor Jan 18, 2013 88.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(200,48) scale(1)"
+                                                    aria-label="Average Visitor Jan 19, 2013 89.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(257,48) scale(1)"
+                                                    aria-label="Average Visitor Jan 20, 2013 89.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(314,80) scale(1)"
+                                                    aria-label="Average Visitor Jan 21, 2013 85.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(371,24)"
+                                                    aria-label="Average Visitor Jan 22, 2013 92.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(429,40)"
+                                                    aria-label="Average Visitor Jan 23, 2013 90.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(486,32)"
+                                                    aria-label="Average Visitor Jan 24, 2013 91.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(543,88)"
+                                                    aria-label="Average Visitor Jan 25, 2013 84.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(600,24)"
+                                                    aria-label="Average Visitor Jan 26, 2013 92.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(657,64)"
+                                                    aria-label="Average Visitor Jan 27, 2013 87.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(714,56)"
+                                                    aria-label="Average Visitor Jan 28, 2013 88.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(771,64)"
+                                                    aria-label="Average Visitor Jan 29, 2013 87.00"></circle>
+                                            <circle r="2.5" cx="0" cy="0" fill="#FFFFFF" stroke="#fe5d70" fill-opacity="1" stroke-width="2" stroke-opacity="1" transform="translate(828,80)"
+                                                    aria-label="Average Visitor Jan 30, 2013 85.00"></circle>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g></g>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(81,20)" visibility="visible">
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(3,213.5)">
+                                                <tspan y="6" x="0">Jan 16</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(117,213.5)">
+                                                <tspan y="6" x="0">Jan 18</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(232,213.5)">
+                                                <tspan y="6" x="0">Jan 20</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(346,213.5)">
+                                                <tspan y="6" x="0">Jan 22</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(460,213.5)">
+                                                <tspan y="6" x="0">Jan 24</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(574,213.5)">
+                                                <tspan y="6" x="0">Jan 26</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(689,213.5)">
+                                                <tspan y="6" x="0">Jan 28</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(803,213.5)">
+                                                <tspan y="6" x="0">Jan 30</tspan>
+                                            </text>
+                                        </g>
+                                        <g transform="translate(81,20)" visibility="visible">
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,200)">
+                                                <tspan y="6" x="0">$0M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,160)">
+                                                <tspan y="6" x="0">$2M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,120)">
+                                                <tspan y="6" x="0">$4M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,79)">
+                                                <tspan y="6" x="0">$6M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,39)">
+                                                <tspan y="6" x="0">$8M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,-1)">
+                                                <tspan y="6" x="0">$10M</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="12px" opacity="1" font-weight="bold" text-anchor="middle" transform="translate(-60,101) rotate(-90)">
+                                                <tspan y="6" x="0">Visitors</tspan>
+                                            </text>
+                                        </g>
+                                        <g transform="translate(81,20)" visibility="visible">
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,200)">
+                                                <tspan y="6" x="0">70</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,160)">
+                                                <tspan y="6" x="0">75</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,120)">
+                                                <tspan y="6" x="0">80</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,79)">
+                                                <tspan y="6" x="0">85</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,39)">
+                                                <tspan y="6" x="0">90</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(867,-1)">
+                                                <tspan y="6" x="0">95</tspan>
+                                            </text>
+                                            <text y="6" fill="#000000" font-family="Verdana" font-size="12px" opacity="1" font-weight="bold" text-anchor="middle" transform="translate(899,101) rotate(-90)">
+                                                <tspan y="6" x="0">New Visitors</tspan>
+                                            </text>
+                                        </g>
+                                    </g>
+                                    <g></g>
+                                    <g transform="translate(81,20)"></g>
+                                    <g></g>
+                                    <g></g>
+                                    <clipPath id="AmChartsEl-3">
+                                        <rect x="-1" y="-1" width="859" height="203" rx="0" ry="0" stroke-width="0"></rect>
+                                    </clipPath>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12">
+            <div class="card">
+                <div class="card-block bg-c-green">
+                    <div id="proj-earning" style="height: 230px; overflow: hidden; text-align: left;">
+                        <div class="amcharts-main-div" style="position: relative;">
+                            <div class="amcharts-chart-div" style="overflow: hidden; position: relative; text-align: left; width: 468px; height: 230px; padding: 0px;">
+                                <svg version="1.1" style="position: absolute; width: 468px; height: 230px; top: 0.390625px; left: -0.28125px;">
+                                    <desc>JavaScript chart by amCharts 3.21.5</desc>
+                                    <g>
+                                        <path cs="100,100" d="M0.5,0.5 L467.5,0.5 L467.5,229.5 L0.5,229.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0"></path>
+                                        <path cs="100,100" d="M0.5,0.5 L406.5,0.5 L406.5,178.5 L0.5,178.5 L0.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0" transform="translate(41,20)"></path>
+                                    </g>
+                                    <g transform="translate(41,20)" clip-path="url(#AmChartsEl-9)">
+                                        <g visibility="hidden"></g>
+                                    </g>
+                                    <g></g>
+                                    <g></g>
+                                    <g></g>
+                                    <g>
+                                        <g transform="translate(41,20)">
+                                            <g>
+                                                <g transform="translate(21,178)" visibility="visible" aria-label=" UI 10">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-58.5 L41.5,-58.5 L41.5,0.5 L0.5,0.5 Z" fill="#fff" stroke="#fff" fill-opacity="1" stroke-width="1" stroke-opacity="1"></path>
+                                                </g>
+                                                <g transform="translate(102,178)" visibility="visible" aria-label=" UX 15">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-132.5 L41.5,-132.5 L41.5,0.5 L0.5,0.5 Z" fill="#fff" stroke="#fff" fill-opacity="1" stroke-width="1" stroke-opacity="1"></path>
+                                                </g>
+                                                <g transform="translate(183,178)" visibility="visible" aria-label=" Web 12">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-88.5 L41.5,-88.5 L41.5,0.5 L0.5,0.5 Z" fill="#fff" stroke="#fff" fill-opacity="1" stroke-width="1" stroke-opacity="1"></path>
+                                                </g>
+                                                <g transform="translate(264,178)" visibility="visible" aria-label=" App 16">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-147.5 L41.5,-147.5 L41.5,0.5 L0.5,0.5 Z" fill="#fff" stroke="#fff" fill-opacity="1" stroke-width="1" stroke-opacity="1"></path>
+                                                </g>
+                                                <g transform="translate(345,178)" visibility="visible" aria-label=" SEO 8">
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,-29.5 L41.5,-29.5 L41.5,0.5 L0.5,0.5 Z" fill="#fff" stroke="#fff" fill-opacity="1" stroke-width="1" stroke-opacity="1"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g></g>
+                                    <g>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L406.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(41,198)"></path>
+                                        </g>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L0.5,178.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(41,20)" visibility="visible"></path>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(41,20)" clip-path="url(#AmChartsEl-10)" style="pointer-events: none;">
+                                            <path cs="100,100" d="M0.5,0.5 L0.5,0.5 L0.5,178.5" fill="none" stroke-width="1" stroke-opacity="0" stroke="#000000" visibility="hidden"></path>
+                                            <path cs="100,100" d="M0.5,0.5 L406.5,0.5 L406.5,0.5" fill="none" stroke-width="1" stroke="#000000" visibility="hidden"></path>
+                                        </g>
+                                        <clipPath id="AmChartsEl-10">
+                                            <rect x="0" y="0" width="406" height="178" rx="0" ry="0" stroke-width="0"></rect>
+                                        </clipPath>
+                                    </g>
+                                    <g></g>
+                                    <g>
+                                        <g></g>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(41,20)" visibility="visible">
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="12px" opacity="1" text-anchor="middle" transform="translate(40.6,191)">
+                                                <tspan y="6" x="0">UI</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="12px" opacity="1" text-anchor="middle" transform="translate(121.6,191)">
+                                                <tspan y="6" x="0">UX</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="12px" opacity="1" text-anchor="middle" transform="translate(202.6,191)">
+                                                <tspan y="6" x="0">Web</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="12px" opacity="1" text-anchor="middle" transform="translate(283.6,191)">
+                                                <tspan y="6" x="0">App</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="12px" opacity="1" text-anchor="middle" transform="translate(364.6,191)">
+                                                <tspan y="6" x="0">SEO</tspan>
+                                            </text>
+                                        </g>
+                                        <g transform="translate(41,20)" visibility="visible">
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,177)">
+                                                <tspan y="6" x="0">6</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,147)">
+                                                <tspan y="6" x="0">8</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,118)">
+                                                <tspan y="6" x="0">10</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,88)">
+                                                <tspan y="6" x="0">12</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,58)">
+                                                <tspan y="6" x="0">14</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,29)">
+                                                <tspan y="6" x="0">16</tspan>
+                                            </text>
+                                            <text y="6" fill="#fff" font-family="Verdana" font-size="11px" opacity="1" text-anchor="end" transform="translate(-12,-1)">
+                                                <tspan y="6" x="0">18</tspan>
+                                            </text>
+                                        </g>
+                                    </g>
+                                    <g transform="translate(41,20)"></g>
+                                    <g></g>
+                                    <g></g>
+                                    <g>
+                                        <g transform="translate(41,20)"></g>
+                                        <g transform="translate(41,20)" visibility="visible">
+                                            <g>
+                                                <path cs="100,100" d="M0.5,178.5 L6.5,178.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,178.5 L0.5,178.5 L406.5,178.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,148.5 L6.5,148.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,148.5 L0.5,148.5 L406.5,148.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,119.5 L6.5,119.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,119.5 L0.5,119.5 L406.5,119.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,89.5 L6.5,89.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,89.5 L0.5,89.5 L406.5,89.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,59.5 L6.5,59.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,59.5 L0.5,59.5 L406.5,59.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,30.5 L6.5,30.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,30.5 L0.5,30.5 L406.5,30.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L6.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="transparent" transform="translate(-6,0)"></path>
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,0.5 L406.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#fff"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g transform="translate(41,20)"></g>
+                                    </g>
+                                    <g></g>
+                                    <clipPath id="AmChartsEl-9">
+                                        <rect x="-1" y="-1" width="408" height="180" rx="0" ry="0" stroke-width="0"></rect>
+                                    </clipPath>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h6 class="text-muted m-b-30 m-t-15">Total completed project and
+                        earning</h6>
+                    <div class="row text-center">
+                        <div class="col-6 b-r-default">
+                            <h6 class="text-muted m-b-10">Completed Projects</h6>
+                            <h4 class="m-b-0 f-w-600 ">175</h4>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-muted m-b-10">Total Earnings</h6>
+                            <h4 class="m-b-0 f-w-600 ">76.6M</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-5 col-md-12">
+            <div class="card table-card">
+                <div class="card-header">
+                    <h5>Global Sales by Top Locations</h5>
+                </div>
+                <div class="card-block">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-borderless">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Sales</th>
+                                <th class="text-right">Average</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><img src="./files/assets/images/widget/GERMANY.jpg" alt="" class="img-fluid img-30"></td>
+                                <td>Germany</td>
+                                <td>3,562</td>
+                                <td class="text-right">56.23%</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./files/assets/images/widget/USA.jpg" alt="" class="img-fluid img-30"></td>
+                                <td>USA</td>
+                                <td>2,650</td>
+                                <td class="text-right">25.23%</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./files/assets/images/widget/AUSTRALIA.jpg" alt="" class="img-fluid img-30"></td>
+                                <td>Australia</td>
+                                <td>956</td>
+                                <td class="text-right">12.45%</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./files/assets/images/widget/UK.jpg" alt="" class="img-fluid img-30"></td>
+                                <td>United Kingdom</td>
+                                <td>689</td>
+                                <td class="text-right">8.65%</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./files/assets/images/widget/BRAZIL.jpg" alt="" class="img-fluid img-30"></td>
+                                <td>Brazil</td>
+                                <td>560</td>
+                                <td class="text-right">3.56%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right  m-r-20">
+                        <a href="#!" class="b-b-primary text-primary">View all Sales
+                            Locations </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>New Users</h5>
+                </div>
+                <div class="card-block">
+                    <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <canvas id="newuserchart" height="250" style="display: block; width: 468px; height: 250px;" width="468" class="chartjs-render-monitor"></canvas>
+                </div>
+                <div class="card-footer ">
+                    <div class="row text-center b-t-default">
+                        <div class="col-4 b-r-default m-t-15">
+                            <h5>85%</h5>
+                            <p class="text-muted m-b-0">Satisfied</p>
+                        </div>
+                        <div class="col-4 b-r-default m-t-15">
+                            <h5>6%</h5>
+                            <p class="text-muted m-b-0">Unsatisfied</p>
+                        </div>
+                        <div class="col-4 m-t-15">
+                            <h5>9%</h5>
+                            <p class="text-muted m-b-0">NA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block text-center">
+                    <i class="feather icon-mail text-c-lite-green d-block f-40"></i>
+                    <h4 class="m-t-15"><span class="text-c-lite-green">8.62k</span>
+                        Subscribers</h4>
+                    <p class="m-b-10">Your main list is growing</p>
+                    <button class="btn btn-primary btn-sm btn-round">Manage
+                        List
+                    </button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block text-center">
+                    <i class="feather icon-twitter text-c-green d-block f-40"></i>
+                    <h4 class="m-t-15"><span class="text-c-blgreenue">+40</span>
+                        Followers</h4>
+                    <p class="m-b-10">Your main list is growing</p>
+                    <button class="btn btn-success btn-sm btn-round">Check them
+                        out
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-4 col-md-6">
+            <div class="card o-hidden">
+                <div class="card-block bg-c-pink text-white">
+                    <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <h6>Sales Per Day <span class="f-right"><i class="feather icon-activity m-r-15"></i>3%</span>
+                    </h6>
+                    <canvas id="sale-chart1" height="234" width="468" style="display: block; width: 468px; height: 234px;" class="chartjs-render-monitor"></canvas>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="row">
+                        <div class="col-6 b-r-default">
+                            <h4>$4230</h4>
+                            <p class="text-muted m-b-0">Total Revenue</p>
+                        </div>
+                        <div class="col-6">
+                            <h4>321</h4>
+                            <p class="text-muted m-b-0">Today Sales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card o-hidden">
+                <div class="card-block bg-c-green text-white">
+                    <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <h6>Visits<span class="f-right"><i class="feather icon-activity m-r-15"></i>9%</span>
+                    </h6>
+                    <canvas id="sale-chart2" height="234" width="468" style="display: block; width: 468px; height: 234px;" class="chartjs-render-monitor"></canvas>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="row">
+                        <div class="col-6 b-r-default">
+                            <h4>3562</h4>
+                            <p class="text-muted m-b-0">Monthly Visits</p>
+                        </div>
+                        <div class="col-6">
+                            <h4>96</h4>
+                            <p class="text-muted m-b-0">Today Visits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12">
+            <div class="card o-hidden">
+                <div class="card-block bg-c-blue text-white">
+                    <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <h6>Orders<span class="f-right"><i class="feather icon-activity m-r-15"></i>12%</span>
+                    </h6>
+                    <canvas id="sale-chart3" height="234" width="468" style="display: block; width: 468px; height: 234px;" class="chartjs-render-monitor"></canvas>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="row">
+                        <div class="col-6 b-r-default">
+                            <h4>1695</h4>
+                            <p class="text-muted m-b-0">Monthly Orders</p>
+                        </div>
+                        <div class="col-6">
+                            <h4>52</h4>
+                            <p class="text-muted m-b-0">Today Orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-4 col-md-12">
+            <div class="card quater-card">
+                <div class="card-block">
+                    <h6 class="text-muted m-b-20">This Quarter</h6>
+                    <h4>$3,9452.50</h4>
+                    <p class="text-muted">$3,9452.50</p>
+                    <h5 class="m-t-30">87</h5>
+                    <p class="text-muted">Online Revenue<span class="f-right">80%</span></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-simple-c-pink" style="width: 80%"></div>
+                    </div>
+                    <h5 class="m-t-30">68</h5>
+                    <p class="text-muted">Offline Revenue<span class="f-right">50%</span></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-simple-c-yellow" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8 col-md-12">
+            <div class="card social-network">
+                <div class="card-header">
+                    <h5>Social Network</h5>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="./files/assets/images/widget/icon-1.png " alt=" " class="img-responsive p-b-20">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Views :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">545,721</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Comments :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">2,256</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Likes :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">4,129</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Subscribe :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">3,451,945</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="./files/assets/images/widget/icon-2.png " alt=" " class="img-responsive p-b-20">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Engagement :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">1,543</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Shares :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">846</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Likes :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">569</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Comments :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">156</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 m-t-0">
+                            <img src="./files/assets/images/widget/icon-3.png " alt=" " class="img-responsive p-b-10 p-t-10">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Tweets :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">103,576</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 m-t-0">
+                            <img src="./files/assets/images/widget/icon-4.png " alt=" " class="img-responsive p-b-10 p-t-10">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="text-muted m-b-5">Tweets :</p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="m-b-5 f-w-400">103,576</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+                                <!-- Page body end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Required Jquery -->
+<script type="text/javascript" src="./files/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/popper.js/dist/umd/popper.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="./files/bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" src="./files/bower_components/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="./files/bower_components/modernizr/feature-detects/css-scrollbars.js"></script>
+
+<!-- Accordion js -->
+<script type="text/javascript" src="./files/assets/pages/accordion/accordion.js"></script>
+
+<!-- i18next.min.js -->
+<script type="text/javascript" src="./files/bower_components/i18next/i18next.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/jquery-i18next/jquery-i18next.min.js"></script>
+<script type="text/javascript" src="./files/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+
+<!-- Switch component js -->
+<script type="text/javascript" src="./files/bower_components/switchery/dist/switchery.min.js"></script>
+
+<!-- Select 2 js -->
+<script type="text/javascript" src="./files/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+<!-- Multiselect js -->
+<script type="text/javascript" src="./files/bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="./files/bower_components/multiselect/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="./files/assets/js/jquery.quicksearch.js"></script>
+
+<!-- Nice Select js-->
+<script type="text/javascript" src="./js/nice-select/js/jquery.nice-select.js"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" src="./files/assets/pages/advance-elements/select2-custom.js"></script>
+<script type="text/javascript" src="./js/switches.js"></script>
+<script type="text/javascript" src="./js/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="./js/customJqueryValidationMethod.js"></script>
+<script type="text/javascript" src="/js/customJqueryValidationSetting.js"></script>
+<script type="text/javascript" src="./js/jquery.serializeObject.js"></script>
+<script type="text/javascript" src="./js/adminCommon.js"></script>
+<script type="text/javascript" src="./js/custom-design.js"></script>
+
+<script src="./files/assets/js/pcoded.min.js"></script>
+<script src="./files/assets/js/vartical-layout.min.js"></script>
+<script src="./files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="./files/assets/js/script.js"></script>
+
+<!-- Data tables-->
+<script type="text/javascript" src="./files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./js/dataTables.select.min.js"></script>
+
+</body>
+</html>
