@@ -1588,6 +1588,18 @@ h5 {
   }
 }
 
+.latest-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  height: calc(100% - 60px);
+}
+.latest-post-grid-img {
+  background-color: #acacac;
+  border-radius: 15px;
+}
+
 /* 관리자게시판 */
 .admin-board > ul {
   display: flex;
